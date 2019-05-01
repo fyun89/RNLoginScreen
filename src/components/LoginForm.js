@@ -12,6 +12,7 @@ export default class LoginForm extends Component {
         <TextInput
           placeholder="Password"
           style={styles.passwordInput}
+          secureTextEntry
         />
         <TouchableOpacity
           title="Login"
