@@ -26,7 +26,7 @@ export default class App extends Component {
   render() {
     const status = this.state.loggedin;
     return (
-      status ? <Account /> : <Login updateStatus={() => this.updateStatus()}/>
+      status ? <Account updateStatus={() => this.updateStatus()}/> : <Login updateStatus={() => this.updateStatus()}/>
     );
 
     // if (status) {

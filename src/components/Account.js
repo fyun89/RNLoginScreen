@@ -11,7 +11,7 @@ export default class Account extends Component {
           title="Logout"
           accessibilityLabel="Click to log out of your account"
           style={styles.loginButton}
-          onPress={() => this.handleSubmit()}
+          onPress={() => this.props.updateStatus()}
         >
           <Text style={styles.loginButtonText}>Logout</Text>
         </TouchableOpacity>

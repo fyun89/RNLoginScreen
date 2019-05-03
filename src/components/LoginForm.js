@@ -5,8 +5,8 @@ export default class LoginForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      username: '',
-      password: '',
+      username: "",
+      password: "",
     }
     this.handleSubmit = this.handleSubmit.bind(this);
   }
@@ -16,8 +16,8 @@ export default class LoginForm extends Component {
     fetch('http://localhost:8000/', {
       method: 'POST',
       body: JSON.stringify({
-        username: this.state.username,
-        password: this.state.password,
+        "username": this.state.username,
+        "password": this.state.password,
       })
     })
     .then((res) => res.json())
@@ -25,9 +25,10 @@ export default class LoginForm extends Component {
       console.log('res', res)
       if (res.data === "accepted") {
         Alert.alert('You have successfully logged in')
-        console.log('fetch updatestatus', this.props.updateStatus())
         this.props.updateStatus()
-      } else {
+      } else if (res.data === "locked") {
+        Alert.alert('Too many incorrect login attempts! Please wait 5 seconds until retry.')
+      } else if (res.data === "rejected") {
         Alert.alert('Please check your credentials again.')
       }
     })
