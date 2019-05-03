@@ -7,17 +7,40 @@ export default class LoginForm extends Component {
     this.state = {
       username: "",
       password: "",
+      encryptionMethod: "",
     }
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.verySecureEncryptor = this.verySecureEncryptor.bind(this);
+    this.componentDidMount = this.componentDidMount.bind(this);
+  }
+
+  componentDidMount() {
+    fetch('https://localhost:8000/encrypt')
+    .then((res) => res.json())
+    .then((res) => {
+      console.log('res', res)
+      if (this.state.encryptionMethod !== res.data) {
+        this.setState({encryptionMethod: res.data})
+      }
+    })
+    .catch((err) => {
+      console.error(err);
+      throw err;
+    });
+  }
+
+  verySecureEncryptor(str) {
+    console.log('@verysecure', this.state.encryptionMethod)
+    return str + this.state.encryptionMethod;
   }
 
   handleSubmit() {
     console.log('handle submit')
-    fetch('http://localhost:8000/', {
+    fetch('https://localhost:8000/', {
       method: 'POST',
       body: JSON.stringify({
-        "username": this.state.username,
-        "password": this.state.password,
+        "username": this.verySecureEncryptor(this.state.username),
+        "password": this.verySecureEncryptor(this.state.password),
       })
     })
     .then((res) => res.json())

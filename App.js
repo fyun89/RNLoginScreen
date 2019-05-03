@@ -28,11 +28,5 @@ export default class App extends Component {
     return (
       status ? <Account updateStatus={() => this.updateStatus()}/> : <Login updateStatus={() => this.updateStatus()}/>
     );
-
-    // if (status) {
-    //   return <Account />;
-    // } else {
-    //   return <Login updateStatus={() => this.updateStatus()}/>;
-    // }
   }
 }
