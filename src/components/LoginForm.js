@@ -8,12 +8,13 @@ export default class LoginForm extends Component {
       username: "",
       password: "",
       encryptionMethod: "",
-    }
+    };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.verySecureEncryptor = this.verySecureEncryptor.bind(this);
     this.componentDidMount = this.componentDidMount.bind(this);
   }
 
+  // when component mounts, client will seek temporary encryption spec from the server
   componentDidMount() {
     fetch('https://localhost:8000/encrypt')
     .then((res) => res.json())
@@ -29,13 +30,13 @@ export default class LoginForm extends Component {
     });
   }
 
+  // use temporary encryption method to secure user login information - simplified for demo purposes
   verySecureEncryptor(str) {
     console.log('@verysecure', this.state.encryptionMethod)
     return str + this.state.encryptionMethod;
   }
 
   handleSubmit() {
-    console.log('handle submit')
     fetch('https://localhost:8000/', {
       method: 'POST',
       body: JSON.stringify({
@@ -45,14 +46,13 @@ export default class LoginForm extends Component {
     })
     .then((res) => res.json())
     .then((res) => {
-      console.log('res', res)
       if (res.data === "accepted") {
-        Alert.alert('You have successfully logged in')
-        this.props.updateStatus()
+        Alert.alert('You have successfully logged in');
+        this.props.updateStatus();
       } else if (res.data === "locked") {
-        Alert.alert('Too many incorrect login attempts! Please wait 5 seconds until retry.')
+        Alert.alert('Too many incorrect login attempts! Please wait 5 seconds until retry.');
       } else if (res.data === "rejected") {
-        Alert.alert('Please check your credentials again.')
+        Alert.alert('Please check your credentials again.');
       }
     })
     .catch((err) => {
@@ -86,7 +86,7 @@ export default class LoginForm extends Component {
       </View>
     );
   }
-}
+};
 
 const styles = StyleSheet.create({
   inputContainer: {

@@ -16,7 +16,7 @@ export default class Login extends Component {
       </KeyboardAvoidingView>
     );
   }
-}
+};
 
 const styles = StyleSheet.create({
   container: {

@@ -18,7 +18,7 @@ export default class Account extends Component {
       </View>
     );
   }
-}
+};
 
 const styles = StyleSheet.create({
   account: {
