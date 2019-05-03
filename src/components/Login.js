@@ -4,6 +4,7 @@ import LoginForm from './LoginForm';
 
 export default class Login extends Component {
   render() {
+    const updateStatus = this.props.updateStatus;
     return (
       <KeyboardAvoidingView behavior="padding" style={styles.container}>
         <Image 
@@ -11,7 +12,7 @@ export default class Login extends Component {
           style={styles.image}
         />
         <Text style={styles.message}>Welcome!</Text>
-        <LoginForm />
+        <LoginForm updateStatus={updateStatus} />
       </KeyboardAvoidingView>
     );
   }

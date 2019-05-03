@@ -1,23 +1,61 @@
-import React, {Component} from 'react';
-import {TouchableOpacity, StyleSheet, Text, TextInput, View} from 'react-native';
+import React, { Component } from 'react';
+import { StyleSheet, Text, TextInput, TouchableOpacity, View, Alert } from 'react-native';
 
 export default class LoginForm extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      username: '',
+      password: '',
+    }
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  handleSubmit() {
+    console.log('handle submit')
+    fetch('http://localhost:8000/', {
+      method: 'POST',
+      body: JSON.stringify({
+        username: this.state.username,
+        password: this.state.password,
+      })
+    })
+    .then((res) => res.json())
+    .then((res) => {
+      console.log('res', res)
+      if (res.data === "accepted") {
+        Alert.alert('You have successfully logged in')
+        console.log('fetch updatestatus', this.props.updateStatus())
+        this.props.updateStatus()
+      } else {
+        Alert.alert('Please check your credentials again.')
+      }
+    })
+    .catch((err) => {
+      console.error(err);
+      throw err;
+    });
+  }
+
   render() {
     return (
       <View style={styles.inputContainer}>
         <TextInput
           placeholder="Username"
           style={styles.usernameInput}
+          onChangeText={(username) => this.setState({username})}
         />
         <TextInput
           placeholder="Password"
           style={styles.passwordInput}
           secureTextEntry
+          onChangeText={(password) => this.setState({password})}
         />
         <TouchableOpacity
           title="Login"
           accessibilityLabel="Click to login to your account"
           style={styles.loginButton}
+          onPress={() => this.handleSubmit()}
         >
           <Text style={styles.loginButtonText}>Login</Text>
         </TouchableOpacity>
