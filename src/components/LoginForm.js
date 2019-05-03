@@ -19,7 +19,6 @@ export default class LoginForm extends Component {
     fetch('https://localhost:8000/encrypt')
     .then((res) => res.json())
     .then((res) => {
-      console.log('res', res)
       if (this.state.encryptionMethod !== res.data) {
         this.setState({encryptionMethod: res.data})
       }
@@ -32,7 +31,6 @@ export default class LoginForm extends Component {
 
   // use temporary encryption method to secure user login information - simplified for demo purposes
   verySecureEncryptor(str) {
-    console.log('@verysecure', this.state.encryptionMethod)
     return str + this.state.encryptionMethod;
   }
 
