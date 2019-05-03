@@ -1,6 +1,6 @@
 # RNLoginScreen
 
-This project demonstrates a sample working login mobile application. The application has been tested based on iPhone X using iOS version 12.1.
+This project demonstrates a sample working login mobile application. The application has been developed based on iPhone X using iOS version 12.1.
 
 You can see a video demo of the working app here:
 [Youtube](https://youtu.be/3kOxEjzd2Q0)
@@ -18,7 +18,13 @@ This project is built for iOS and is required to use Xcode to view the app. To r
 
 ### Installation and run
 
-To install the dependencies:
+Download the files to your directory:
+
+```
+git clone https://github.com/fyun89/RNLoginScreen
+```
+
+Inside the project folder, install the dependencies:
 
 ```
 npm install
@@ -35,8 +41,6 @@ To run the client (mobile app on virtual iPhone):
 ```
 react-native run-ios
 ```
-
-End with an example of getting some data out of the system or using it for a little demo
 
 
 ## Built With
